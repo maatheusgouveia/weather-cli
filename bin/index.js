@@ -4,13 +4,15 @@ require("dotenv/config");
 const axios = require("axios");
 
 async function getWeather() {
-    const [arguments] = process.argv.splice(2, process.argv.length - 1);
+    const [city] = process.argv.splice(2, process.argv.length - 1);
 
     const response = await axios.get(
-        `https://api.hgbrasil.com/weather?key=${process.env.KEY}`
+        encodeURI(
+            `https://api.hgbrasil.com/weather?key=${process.env.KEY}&city_name=${city}`
+        )
     );
 
-    const { description, city_name } = response.data.results;
+    const { city_name } = response.data.results;
     const [day] = response.data.results.forecast;
 
     console.log(
