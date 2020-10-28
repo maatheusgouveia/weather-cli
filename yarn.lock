@@ -51,6 +51,11 @@ anymatch@~3.1.1:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
+argh@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/argh/-/argh-1.0.0.tgz#2486eb42089517c934b7e5f8775c21f266d52dec"
+  integrity sha512-bU//DeNIzcvv7zukUh4OB0bIewqsiMsia6xSvHth43VOeLu6UEN9FZ4wRP2K+8WmHhTUXnfoAzj0rV/EcOa8Ig==
+
 axios@^0.21.0:
   version "0.21.0"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.0.tgz#26df088803a2350dff2c27f96fef99fe49442aca"

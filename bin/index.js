@@ -1,7 +1,9 @@
 #! /usr/bin/env node
 
 require("dotenv/config");
+
 const axios = require("axios");
+const { argv } = require("argh");
 
 async function getWeather() {
     const [city] = process.argv.splice(2, process.argv.length - 1);
@@ -13,13 +15,23 @@ async function getWeather() {
     );
 
     const { city_name } = response.data.results;
-    const [day] = response.data.results.forecast;
+    const [today, ...otherDays] = response.data.results.forecast;
 
     console.log(
-        `A mínima para hoje é de ${day.min}° C e a máxima é de ${
-            day.max
-        }° C em ${city_name} e podem haver ${day.description.toLowerCase()}`
+        `A mínima para hoje é de ${today.min}° C e a máxima é de ${
+            today.max
+        }° C em ${city_name} e podem haver ${today.description.toLowerCase()}`
     );
+
+    if (argv.table) {
+        const days = [today, ...otherDays].map((day) => ({
+            Dia: day.date,
+            "Dia da semana": day.weekday,
+            Descrição: day.description,
+        }));
+
+        console.table(days);
+    }
 }
 
 getWeather();
